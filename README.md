@@ -1,70 +1,200 @@
-# Getting Started with Create React App
+# 🚀 Digital Customer Onboarding – Multi-Domain Platform (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Developed by:   1.Suraj Mane.
+                2.Aditya Lokhande.
+                3.Adesh Madhurkar.
+                4.Purva Meherkar.
 
-## Available Scripts
+This repository contains the **frontend application** of the Digital Customer Onboarding system developed as a Final Year Engineering Project.
 
-In the project directory, you can run:
+The platform provides a unified digital onboarding experience across multiple domains such as **Banking, Healthcare, E-commerce, and Real Estate**, allowing users to register, authenticate, complete onboarding workflows, and access domain-specific dashboards.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 📌 Project Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Digital Customer Onboarding is a centralized platform designed to streamline customer onboarding processes across different industries.
 
-### `npm test`
+The system includes:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Secure authentication system
+- Multi-domain onboarding modules
+- Dashboard analytics for each domain
+- Profile management
+- Protected routes for security
 
-### `npm run build`
+Currently, the **Banking domain onboarding flow is fully implemented and functional**.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 🌐 Application Flow
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Landing Page  
+2. User Registration  
+3. Login Authentication  
+4. Home Page (Domain Selection)  
+5. Select Domain  
+6. Complete Domain Onboarding  
+7. Access Domain Dashboard  
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# ✨ Core Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔐 Authentication
+- User Registration
+- Secure Login
+- Forgot Password
+- Protected Routes
+- Context-based authentication state management
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🏠 Public Pages
+- Landing Page
+- About Page
+- Login & Register
+- Forgot Password
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 👤 User Features
+- Profile Page
+- Secure Session Handling
 
-## Learn More
+## 🏦 Banking Domain (Fully Implemented)
+- Multi-step Account Opening Form
+- Personal Information Collection
+- Address Details
+- Nominee Details
+- Document Upload
+- KYC Form Submission
+- Review & Consent
+- Banking Dashboard Analytics
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🩺 Healthcare Domain (Structure Ready)
+- Healthcare Onboarding
+- Healthcare Dashboard
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛒 E-commerce Domain (Structure Ready)
+- E-commerce Onboarding
+- E-commerce Dashboard
 
-### Code Splitting
+## 🏘 Real Estate Domain (Structure Ready)
+- Real Estate Onboarding
+- Real Estate Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📊 Dashboard System
+- Master Dashboard
+- Domain-specific Dashboards
+- System Pages:
+  - Users
+  - Reports
+  - Settings
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# 🛠 Tech Stack
 
-### Making a Progressive Web App
+## Frontend Framework
+- React.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Styling
+- Tailwind CSS
+- Custom CSS
 
-### Advanced Configuration
+## Routing
+- React Router DOM
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## State Management
+- React Context API (AuthContext)
 
-### Deployment
+## API Integration
+- Axios
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+# 📂 Project Folder Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+src/
+│
+├── pages/ # All main pages organized by domain
+│ ├── auth/ # Authentication & public pages
+│ ├── banking/ # Banking domain
+│ ├── healthcare/ # Healthcare domain
+│ ├── ecommerce/ # E-commerce domain
+│ ├── realestate/ # Real estate domain
+│ ├── system/ # Admin/system pages
+│
+├── components/ # Reusable UI components
+│ ├── Navbar
+│ ├── Sidebar
+│ ├── Layouts
+│ ├── Dashboard Shell
+│ └── UI Elements
+│
+├── services/ # API & Authentication logic
+│ ├── api.js
+│ ├── AuthContext.js
+│ └── useAuth.js
+│
+├── routes/ # ProtectedRoute logic
+├── hooks/ # Custom React hooks
+├── assets/ # Images and CSS
+├── animations/ # Animation configurations
+
+
+
+---
+
+# ⚙️ Installation & Setup
+
+## 1️⃣ Clone Repository
+```bash
+git clone <YOUR_FRONTEND_REPO_URL>
+
+2️⃣ Navigate to Project Folder
+cd MODULE-FRONTEND
+
+3️⃣ Install Dependencies
+npm install
+
+▶️ Running the Application
+npm start
+----------------------------------
+Application will run at:
+
+http://localhost:3000
+
+----------------------------------
+
+🔌 Backend Integration
+
+Ensure the backend server is running before starting frontend.
+
+-----------------------------------
+
+🔒 Security Implementation
+
+Route-level protection using ProtectedRoute
+
+Context-based authentication handling
+
+Session management
+
+Controlled dashboard access
+-------------------------------------------
+
+📚 Academic Purpose
+
+This project is developed as part of a Final Year Engineering academic submission.
+
+🚀 Future Enhancements
+
+OTP-based verification
+
+Role-based access control
+
+Cloud deployment
+
+Document verification integration
+
+Admin analytics panel
+
+Multi-language support

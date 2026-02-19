@@ -1,38 +1,208 @@
-.App {
-  text-align: center;
+/* ================= BASE STYLES ================= */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* ================= AUTH PAGES (LOGIN / REGISTER) ================= */
+.login-page-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #87CEEB; /* Sky blue */
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1c1c;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar a {
+  color: #0df3e8ec;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar a:hover {
+  color: #c7d2fe;
+}
+
+/* ================= GENERIC FORM STYLES ================= */
+.container {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  color: #112427;
+}
+
+.form-header p {
+  margin: 0;
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.register-btn {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: #4f46e5;
   color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.register-btn:hover {
+  background-color: #6366f1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.form-footer a {
+  color: #4f46e5;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ================================================= */
+/* ========== BANKING ONBOARDING (NEW) ============== */
+/* ================================================= */
+
+.banking-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f4f7fb; /* soft banking background */
+  min-height: calc(100vh - 70px);
+}
+
+.banking-option-card {
+  width: 420px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.banking-option-card h3 {
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+.banking-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #2563eb;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.banking-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.form-card {
+  width: 750px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.form-card h3 {
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+.form-card h6 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-card button {
+  background-color: #2563eb;
+  border: none;
+  padding: 12px;
+  font-weight: 600;
+}
+
+.form-card button:hover {
+  background-color: #1d4ed8;
 }

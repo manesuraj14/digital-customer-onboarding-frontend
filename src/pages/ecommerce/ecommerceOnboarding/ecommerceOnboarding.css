@@ -1,0 +1,115 @@
+/* PAGE WRAPPER (prevents navbar overlap) */
+.ecom-page {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* MAIN CARD */
+.ecom-container {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* BACK BUTTON */
+.back-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* TITLES */
+.ecom-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.ecom-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+/* SECTIONS */
+.ecom-section {
+  margin-bottom: 24px;
+}
+
+.ecom-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.ecom-label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* INPUTS */
+.ecom-section input,
+.ecom-section select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* CHECKBOX LAYOUT (FIXED) */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.checkbox-item input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+  width: 100%;
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #15803d;
+}

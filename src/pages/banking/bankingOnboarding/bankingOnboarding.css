@@ -1,0 +1,170 @@
+/* ================================
+   GLOBAL CONTAINER
+================================ */
+.banking-home-container,
+.form-container {
+  max-width: 650px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ================================
+   BANKING HOME OPTIONS
+================================ */
+.banking-home-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #1f2937;
+}
+
+.banking-option {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 14px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banking-option:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+
+/* ================================
+   BACK LINK
+================================ */
+.back-link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 15px;
+  padding: 0;
+  display: inline-block;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   FORM HEADINGS
+================================ */
+.form-container h2 {
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.form-container h4 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+/* ================================
+   INPUT FIELDS
+================================ */
+.form-container input,
+.form-container textarea,
+.form-container select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+  outline: none;
+  border-color: #7c5cfa;
+  box-shadow: 0 0 0 3px rgba(124, 92, 250, 0.2);
+}
+
+/* ================================
+   RADIO GROUPS
+================================ */
+.form-container label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-container input[type="radio"] {
+  margin-right: 6px;
+}
+
+/* ================================
+   BANK SELECTION BUTTONS
+================================ */
+.bank-btn {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  background: #7c5cfa;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bank-btn:hover {
+  background: #6f3df4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(124, 92, 250, 0.35);
+}
+
+/* ================================
+   SUBMIT BUTTON
+================================ */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: #16a34a;
+  color: #ffffff;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(22, 163, 74, 0.35);
+}
+
+/* ================================
+   RESPONSIVE FIX
+================================ */
+@media (max-width: 768px) {
+  .banking-home-container,
+  .form-container {
+    margin: 20px;
+    padding: 22px;
+  }
+}
