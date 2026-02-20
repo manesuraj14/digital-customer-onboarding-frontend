@@ -147,12 +147,14 @@ src/
 
 ## 1️⃣ Clone Repository
 ```bash
-git clone <YOUR_FRONTEND_REPO_URL>
+git clone <https://github.com/manesuraj14/digital-customer-onboarding-frontend.git>
 
 2️⃣ Navigate to Project Folder
 cd MODULE-FRONTEND
 
 3️⃣ Install Dependencies
+node -v
+npm -v
 npm install
 
 ▶️ Running the Application

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import Input, { PasswordInput } from "./ui/Input";
+import Button from "./ui/Button";
 
 export default function Profile() {
 
@@ -191,7 +193,7 @@ export default function Profile() {
   if(loading) return <p className="text-center mt-20">Loading...</p>;
 
   return(
-    <div className="max-w-xl mx-auto mt-24 bg-white shadow-lg rounded-xl p-8 space-y-4">
+    <div className="max-w-xl mx-auto mt-24 bg-white shadow-lg rounded-xl p-8 space-y-6">
 
       {popup.msg && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
@@ -212,22 +214,32 @@ export default function Profile() {
       <h2 className="text-2xl font-bold text-center">My Profile</h2>
 
       {/* PROFILE FORM */}
-      <form onSubmit={updateProfile} className="space-y-4">
+      <form onSubmit={updateProfile} className="space-y-5">
 
-        <input value={form.fullName}
+        <Input
+          label="Full Name"
+          value={form.fullName}
           onChange={e=>setForm({...form,fullName:e.target.value})}
-          className="w-full border rounded px-4 py-2"/>
+          placeholder="Enter your full name"
+        />
 
-        <input value={form.email}
+        <Input
+          label="Email Address"
+          type="email"
+          value={form.email}
           onChange={e=>setForm({...form,email:e.target.value})}
-          className="w-full border rounded px-4 py-2"/>
+          placeholder="Enter your email"
+        />
 
-        <input value={form.phone}
+        <Input
+          label="Phone Number"
+          type="tel"
+          value={form.phone}
           onChange={e=>{
             setForm({...form,phone:e.target.value});
             setPhoneChanged(true);
           }}
-          className="w-full border rounded px-4 py-2"
+          placeholder="Enter your phone number"
         />
 
         {phoneChanged && !phoneOtpSent && (
@@ -240,65 +252,70 @@ export default function Profile() {
 
         {phoneOtpSent && (
           <>
-            <input placeholder="Enter phone OTP"
+            <Input 
+              placeholder="Enter phone OTP"
+              value={phoneOtp}
               onChange={e=>setPhoneOtp(e.target.value)}
-              className="w-full border rounded px-3 py-2"/>
+            />
 
-            <button type="button"
+            <Button 
               onClick={verifyPhoneOtp}
-              className="w-full bg-green-600 text-white py-2 rounded">
+              className="w-full"
+            >
               Verify Phone
-            </button>
+            </Button>
           </>
         )}
 
-        <button className="w-full bg-indigo-600 text-white py-2 rounded">
+        <Button className="w-full">
           Save Changes
-        </button>
+        </Button>
       </form>
 
       {/* PASSWORD SECTION */}
       <button type="button"
         onClick={()=>setShowPasswordBox(!showPasswordBox)}
-        className="w-full bg-gray-200 py-2 rounded">
+        className="w-full bg-gray-200 py-3 rounded-lg font-medium hover:bg-gray-300 transition">
         Change Password
       </button>
 
       {showPasswordBox && (
-        <div className="border p-4 rounded space-y-3">
+        <div className="border p-6 rounded-xl space-y-5">
 
           {step===1 && (
             <>
-              <input value={data.phone}
+              <Input
+                label="Phone Number"
+                value={data.phone}
                 onChange={e=>setData({...data,phone:e.target.value})}
-                className="w-full border rounded px-3 py-2"/>
+                placeholder="Enter your phone number"
+              />
 
-              <div className="relative">
-                <input type={showOld?"text":"password"}
-                  placeholder="Old Password"
-                  onChange={e=>setData({...data,oldPassword:e.target.value})}
-                  className="w-full border rounded px-3 py-2"/>
-                <span onClick={()=>setShowOld(!showOld)}
-                  className="absolute right-3 top-2 cursor-pointer">👁</span>
-              </div>
+              <PasswordInput
+                label="Old Password"
+                value={data.oldPassword}
+                onChange={e=>setData({...data,oldPassword:e.target.value})}
+                showPassword={showOld}
+                onTogglePassword={()=>setShowOld(!showOld)}
+                placeholder="Enter old password"
+              />
 
-              <button type="button" onClick={verifyOld}
-                className="w-full bg-indigo-600 text-white py-2 rounded">
+              <Button onClick={verifyOld} className="w-full">
                 Verify Old Password
-              </button>
+              </Button>
             </>
           )}
 
           {step===2 && (
             <>
-              <div className="relative">
-                <input type={showNew?"text":"password"}
-                  placeholder="New Password"
-                  onChange={e=>setData({...data,newPassword:e.target.value})}
-                  className="w-full border rounded px-3 py-2"/>
-                <span onClick={()=>setShowNew(!showNew)}
-                  className="absolute right-3 top-2 cursor-pointer">👁</span>
-              </div>
+              <PasswordInput
+                label="New Password"
+                value={data.newPassword}
+                onChange={e=>setData({...data,newPassword:e.target.value})}
+                showPassword={showNew}
+                onTogglePassword={()=>setShowNew(!showNew)}
+                placeholder="Enter new password"
+              />
 
               <div className="text-xs space-y-1">
                 {rules.map(r=>(
@@ -310,27 +327,30 @@ export default function Profile() {
                 ))}
               </div>
 
-              <div className="relative">
-                <input type={showConfirm?"text":"password"}
-                  placeholder="Confirm Password"
-                  onChange={e=>setData({...data,confirmPassword:e.target.value})}
-                  className="w-full border rounded px-3 py-2"/>
-                <span onClick={()=>setShowConfirm(!showConfirm)}
-                  className="absolute right-3 top-2 cursor-pointer">👁</span>
-              </div>
+              <PasswordInput
+                label="Confirm Password"
+                value={data.confirmPassword}
+                onChange={e=>setData({...data,confirmPassword:e.target.value})}
+                showPassword={showConfirm}
+                onTogglePassword={()=>setShowConfirm(!showConfirm)}
+                placeholder="Confirm new password"
+              />
 
               {!otpSent ? (
-                <button type="button"
+                <Button
                   disabled={!passwordsMatch}
                   onClick={sendOtp}
-                  className="w-full bg-indigo-600 text-white py-2 rounded">
+                  className="w-full"
+                >
                   Send OTP
-                </button>
+                </Button>
               ):(
                 <>
-                  <input placeholder="Enter OTP"
+                  <Input 
+                    placeholder="Enter OTP"
+                    value={data.otp}
                     onChange={e=>setData({...data,otp:e.target.value})}
-                    className="w-full border rounded px-3 py-2"/>
+                  />
 
                   {timer>0 ? (
                     <p className="text-xs text-gray-500">
@@ -344,12 +364,13 @@ export default function Profile() {
                     </button>
                   )}
 
-                  <button type="button"
+                  <Button
                     disabled={!isOtpValid}
                     onClick={changePassword}
-                    className="w-full bg-green-600 text-white py-2 rounded">
+                    className="w-full"
+                  >
                     Verify & Update Password
-                  </button>
+                  </Button>
                 </>
               )}
             </>

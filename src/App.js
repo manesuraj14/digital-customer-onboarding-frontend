@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,55 +7,64 @@ import {
   useLocation,
 } from "react-router-dom";
 import { AuthProvider } from "./services/AuthContext";
+import ErrorBoundary from "./components/ErrorBoundary";
 
-/* NAVBAR */
-import AppNavbar from "./components/Navbar";
-
-/* PUBLIC */
-import Landing from "./pages/auth/Landing";
-import Home from "./pages/auth/Home";
-import About from "./pages/auth/About";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import ForgotPassword from "./pages/auth/ForgotPassword";
-import Profile from "./components/Profile";
-
-/* DASHBOARD CORE */
+/* COMPONENTS */
+import AppNavbar from "./components/ui/Navbar";
 import Dashboard from "./components/Dashboard";
 import DashboardLayout from "./components/DashboardLayout";
-
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Spinner from "./components/ui/Spinner";
 
-/* BANKING */
-import BankingHome from "./pages/banking/bankingOnboarding/BankingHome";
-import AccountOpening from "./pages/banking/bankingOnboarding/AccountOpening";
-import KYCForm from "./pages/banking/bankingOnboarding/KYCForm";
-import BankingDashboard from "./pages/banking/BankingDashboard";
+// Loading fallback component
+const LoadingFallback = () => (
+  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+    <Spinner />
+  </div>
+);
 
-/* HEALTHCARE */
-import HealthcareDashboard from "./pages/healthcare/HealthcareDashboard";
-import HealthcareOnboarding from "./pages/healthcare/healthcareOnboarding/HealthcareOnboarding";
+/* LAZY LOADED - PUBLIC */
+const Landing = lazy(() => import("./pages/auth/Landing"));
+const Home = lazy(() => import("./pages/auth/Home"));
+const About = lazy(() => import("./pages/auth/About"));
+const Login = lazy(() => import("./pages/auth/Login"));
+const Register = lazy(() => import("./pages/auth/Register"));
+const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const Profile = lazy(() => import("./components/Profile"));
 
-/* REAL ESTATE */
-import RealEstateDashboard from "./pages/realestate/RealEstateDashboard";
-import RealEstateOnboarding from "./pages/realestate/RealEstateOnboarding/RealEstateOnboarding";
+/* LAZY LOADED - BANKING */
+const BankingHome = lazy(() => import("./pages/banking/bankingOnboarding/BankingHome"));
+const AccountOpening = lazy(() => import("./pages/banking/bankingOnboarding/AccountOpening"));
+const TrackApplication = lazy(() =>import("./pages/banking/bankingOnboarding/TrackApplication"));
+const KYCForm = lazy(() => import("./pages/banking/bankingOnboarding/KYCForm"));
+const BankingDashboard = lazy(() => import("./pages/banking/BankingDashboard"));
 
-/* ECOMMERCE */
-import EcommerceDashboard from "./pages/ecommerce/EcommerceDashboard";
-import EcommerceOnboarding from "./pages/ecommerce/ecommerceOnboarding/EcommerceOnboarding";
+/* LAZY LOADED - HEALTHCARE */
+const HealthcareDashboard = lazy(() => import("./pages/healthcare/HealthcareDashboard"));
+const HealthcareOnboarding = lazy(() => import("./pages/healthcare/healthcareOnboarding/HealthcareOnboarding"));
 
-/* SYSTEM */
-import Users from "./pages/system/Users";
-import Reports from "./pages/system/Reports";
-import Settings from "./pages/system/Settings";
+/* LAZY LOADED - REAL ESTATE */
+const RealEstateDashboard = lazy(() => import("./pages/realestate/RealEstateDashboard"));
+const RealEstateOnboarding = lazy(() => import("./pages/realestate/RealEstateOnboarding/RealEstateOnboarding"));
+
+/* LAZY LOADED - ECOMMERCE */
+const EcommerceDashboard = lazy(() => import("./pages/ecommerce/EcommerceDashboard"));
+const EcommerceOnboarding = lazy(() => import("./pages/ecommerce/ecommerceOnboarding/EcommerceOnboarding"));
+
+/* LAZY LOADED - SYSTEM */
+const Users = lazy(() => import("./pages/system/Users"));
+const Reports = lazy(() => import("./pages/system/Reports"));
+const Settings = lazy(() => import("./pages/system/Settings"));
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <MainLayout />
-      </AuthProvider>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <AuthProvider>
+          <MainLayout />
+        </AuthProvider>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
@@ -77,19 +86,21 @@ function MainLayout() {
       <Routes>
 
         {/* PUBLIC */}
-        <Route path="/" element={<Landing />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/" element={<Suspense fallback={<LoadingFallback />}><Landing /></Suspense>} />
+        <Route path="/about" element={<Suspense fallback={<LoadingFallback />}><About /></Suspense>} />
+        <Route path="/login" element={<Suspense fallback={<LoadingFallback />}><Login /></Suspense>} />
+        <Route path="/register" element={<Suspense fallback={<LoadingFallback />}><Register /></Suspense>} />
+        <Route path="/forgot-password" element={<Suspense fallback={<LoadingFallback />}><ForgotPassword /></Suspense>} />
 
         {/* HOME */}
         <Route
           path="/home"
           element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
@@ -97,9 +108,11 @@ function MainLayout() {
         <Route
           path="/profile"
           element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
@@ -119,44 +132,65 @@ function MainLayout() {
         <Route
           path="/dashboard/banking-analytics"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <BankingDashboard />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <BankingDashboard />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/dashboard/banking"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <BankingHome />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <BankingHome />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/dashboard/banking/account-opening"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <AccountOpening />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <AccountOpening />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
+  path="/dashboard/banking/track"
+  element={
+    <Suspense fallback={<LoadingFallback />}>
+      <ProtectedRoute>
+        <DashboardLayout>
+          <TrackApplication />
+        </DashboardLayout>
+      </ProtectedRoute>
+    </Suspense>
+  }
+/>
+
+        <Route
           path="/dashboard/banking/kyc"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <KYCForm />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <KYCForm />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
@@ -164,20 +198,24 @@ function MainLayout() {
         <Route
           path="/healthcare/onboarding"
           element={
-            <ProtectedRoute>
-              <HealthcareOnboarding />
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <HealthcareOnboarding />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/dashboard/healthcare"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <HealthcareDashboard />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <HealthcareDashboard />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
@@ -185,20 +223,24 @@ function MainLayout() {
         <Route
           path="/realestate/onboarding"
           element={
-            <ProtectedRoute>
-              <RealEstateOnboarding />
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <RealEstateOnboarding />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/dashboard/realestate"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <RealEstateDashboard />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <RealEstateDashboard />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
@@ -206,20 +248,24 @@ function MainLayout() {
         <Route
           path="/ecommerce/onboarding"
           element={
-            <ProtectedRoute>
-              <EcommerceOnboarding />
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <EcommerceOnboarding />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/dashboard/ecommerce"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <EcommerceDashboard />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <EcommerceDashboard />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
@@ -227,33 +273,39 @@ function MainLayout() {
         <Route
           path="/dashboard/users"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Users />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <Users />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/dashboard/reports"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Reports />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <Reports />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/dashboard/settings"
           element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Settings />
-              </DashboardLayout>
-            </ProtectedRoute>
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <Settings />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
