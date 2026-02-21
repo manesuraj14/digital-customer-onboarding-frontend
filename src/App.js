@@ -169,17 +169,17 @@ function MainLayout() {
         />
 
         <Route
-  path="/dashboard/banking/track"
-  element={
-    <Suspense fallback={<LoadingFallback />}>
-      <ProtectedRoute>
-        <DashboardLayout>
-          <TrackApplication />
-        </DashboardLayout>
-      </ProtectedRoute>
-    </Suspense>
-  }
-/>
+          path="/dashboard/banking/track"
+          element={
+            <Suspense fallback={<LoadingFallback />}>
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <TrackApplication />
+                </DashboardLayout>
+              </ProtectedRoute>
+            </Suspense>
+          }
+        />
 
         <Route
           path="/dashboard/banking/kyc"
