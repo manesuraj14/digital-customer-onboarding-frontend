@@ -58,7 +58,7 @@ const Settings = lazy(() => import("./pages/system/Settings"));
 
 function App() {
   return (
-    <ErrorBoundary>
+    <ErrorBoundary> 
       <Router>
         <AuthProvider>
           <MainLayout />
@@ -128,71 +128,72 @@ function MainLayout() {
           }
         />
 
-        {/* BANKING */}
-        <Route
-          path="/dashboard/banking-analytics"
-          element={
-            <Suspense fallback={<LoadingFallback />}>
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <BankingDashboard />
-                </DashboardLayout>
-              </ProtectedRoute>
-            </Suspense>
-          }
-        />
+        {/* BANKING ROOT */}
+<Route
+  path="/dashboard/banking"
+  element={
+    <Suspense fallback={<LoadingFallback />}>
+      <ProtectedRoute>
+        <DashboardLayout>
+          <BankingHome />
+        </DashboardLayout>
+      </ProtectedRoute>
+    </Suspense>
+  }
+/>
 
-        <Route
-          path="/dashboard/banking"
-          element={
-            <Suspense fallback={<LoadingFallback />}>
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <BankingHome />
-                </DashboardLayout>
-              </ProtectedRoute>
-            </Suspense>
-          }
-        />
+{/* BANKING ANALYTICS (NESTED STYLE URL) */}
+<Route
+  path="/dashboard/banking/analytics"
+  element={
+    <Suspense fallback={<LoadingFallback />}>
+      <ProtectedRoute>
+        <DashboardLayout>
+          <BankingDashboard />
+        </DashboardLayout>
+      </ProtectedRoute>
+    </Suspense>
+  }
+/>
 
-        <Route
-          path="/dashboard/banking/account-opening"
-          element={
-            <Suspense fallback={<LoadingFallback />}>
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <AccountOpening />
-                </DashboardLayout>
-              </ProtectedRoute>
-            </Suspense>
-          }
-        />
+<Route
+  path="/dashboard/banking/account-opening"
+  element={
+    <Suspense fallback={<LoadingFallback />}>
+      <ProtectedRoute>
+        <DashboardLayout>
+          <AccountOpening />
+        </DashboardLayout>
+      </ProtectedRoute>
+    </Suspense>
+  }
+/>
 
-        <Route
-          path="/dashboard/banking/track"
-          element={
-            <Suspense fallback={<LoadingFallback />}>
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <TrackApplication />
-                </DashboardLayout>
-              </ProtectedRoute>
-            </Suspense>
-          }
-        />
+<Route
+  path="/dashboard/banking/track"
+  element={
+    <Suspense fallback={<LoadingFallback />}>
+      <ProtectedRoute>
+        <DashboardLayout>
+          <TrackApplication />
+        </DashboardLayout>
+      </ProtectedRoute>
+    </Suspense>
+  }
+/>
 
-        <Route
-          path="/dashboard/banking/kyc"
-          element={
-            <Suspense fallback={<LoadingFallback />}>
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <KYCForm />
-                </DashboardLayout>
-              </ProtectedRoute>
-            </Suspense>
-          }
-        />
+<Route
+  path="/dashboard/banking/kyc"
+  element={
+    <Suspense fallback={<LoadingFallback />}>
+      <ProtectedRoute>
+        <DashboardLayout>
+          <KYCForm />
+        </DashboardLayout>
+      </ProtectedRoute>
+    </Suspense>
+  }
+/>
 
         {/* HEALTHCARE */}
         <Route

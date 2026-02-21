@@ -30,10 +30,12 @@ export default function Sidebar({ isCollapsed, onToggle }) {
       icon: Landmark, 
       label: "Banking",
       children: [
-        { to: "/dashboard/banking/account-opening", icon: Building2, label: "Account Opening" },
-        { to: "/dashboard/banking/kyc", icon: Shield, label: "KYC Verification" },
-        { to: "/dashboard/banking/track", icon: Search, label: "Track Application" },
-      ]
+  { to: "/dashboard/banking", icon: Landmark, label: "Banking Home" },
+  { to: "/dashboard/banking/analytics", icon: Building2, label: "Analytics" },
+  { to: "/dashboard/banking/account-opening", icon: Building2, label: "Account Opening" },
+  { to: "/dashboard/banking/kyc", icon: Shield, label: "KYC Verification" },
+  { to: "/dashboard/banking/track", icon: Search, label: "Track Application" },
+]
     },
     { to: "/dashboard/healthcare", icon: HeartPulse, label: "Healthcare" },
     { to: "/dashboard/realestate", icon: Home, label: "Real Estate" },
