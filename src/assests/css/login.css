@@ -1,0 +1,20 @@
+/* Update the background of the main wrapper */
+.login-page-wrapper {
+    /* Full height of the viewport */
+    min-height: 100vh; 
+    /* Centers content vertically (using flex) */
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    
+    /* 🎨 THE SKY BLUE BACKGROUND 🎨 */
+    background-color: #87CEEB; 
+    
+    padding: 20px 0;
+}
+
+/* Optional: Keep the card background white/light to make it pop against the blue */
+.login-page-wrapper .card {
+    border-radius: 15px; 
+    overflow: hidden; 
+}

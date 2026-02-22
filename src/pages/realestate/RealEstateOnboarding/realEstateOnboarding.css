@@ -1,0 +1,132 @@
+.re-form-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.re-form-container h2 {
+  text-align: center;
+  color: #1f2937;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.re-form-container h4 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.re-form-container input,
+.re-form-container select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+}
+
+.re-form-container input:focus,
+.re-form-container select:focus {
+  outline: none;
+  border-color: #7c5cfa;
+  box-shadow: 0 0 0 3px rgba(124, 92, 250, 0.25);
+}
+
+.upload-label {
+  display: block;
+  background: #f3f4f6;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.upload-label input {
+  display: block;
+  margin-top: 6px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.checkbox input {
+  margin-right: 8px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #15803d;
+}
+
+.back-link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+/* =========================
+   CONSENT & DECLARATION
+========================= */
+
+.consent-section {
+  margin-top: 24px;
+}
+
+.consent-section h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.consent-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #111827;
+  cursor: pointer;
+}
+
+.consent-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.consent-item span {
+  line-height: 1.4;
+}

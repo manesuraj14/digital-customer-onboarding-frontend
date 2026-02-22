@@ -1,0 +1,131 @@
+/* PAGE BACKGROUND */
+.about-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6f3df4, #8b5cf6);
+  color: #ffffff;
+  padding-bottom: 60px;
+}
+
+/* HERO SECTION */
+.about-hero {
+  text-align: center;
+  padding: 100px 20px 70px;
+}
+
+.about-hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.about-hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #e6ddff;
+}
+
+/* AIM & OVERVIEW */
+.about-overview {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.overview-card {
+  background: #ffffff;
+  color: #1f2937;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.overview-card h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.overview-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+/* INDUSTRY SECTION */
+.about-industries {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
+}
+
+.about-industries h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.industry-card {
+  background: #ffffff;
+  color: #1f2937;
+  padding: 26px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+}
+
+.industry-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.industry-card p {
+  font-size: 14.5px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* WORKING PROJECT */
+.about-working {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 22px;
+}
+
+.about-working h2 {
+  font-size: 30px;
+  margin-bottom: 16px;
+}
+
+.about-working p {
+  font-size: 16px;
+  color: #e6ddff;
+  line-height: 1.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 36px;
+  }
+
+  .about-industries h2 {
+    font-size: 30px;
+  }
+}
