@@ -1,220 +1,291 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-
 # 🚀 Digital Customer Onboarding – Multi-Domain Platform (Frontend)
 
-Developed by:   1.Suraj Mane.
-                2.Aditya Lokhande.
-                3.Adesh Madhurkar.
-                4.Purva Meherkar.
-
-This repository contains the **frontend application** of the Digital Customer Onboarding system developed as a Final Year Engineering Project.
-
-The platform provides a unified digital onboarding experience across multiple domains such as **Banking, Healthcare, E-commerce, and Real Estate**, allowing users to register, authenticate, complete onboarding workflows, and access domain-specific dashboards.
+**Final Year Engineering Project**
+Developed by:
+**Suraj Mane • Aditya Lokhande • Adesh Madhurkar • Purva Meherkar**
 
 ---
 
 # 📌 Project Overview
 
-Digital Customer Onboarding is a centralized platform designed to streamline customer onboarding processes across different industries.
+Digital Customer Onboarding is a **centralized multi-domain onboarding platform** designed to streamline how users register, authenticate, and complete onboarding workflows across different industries.
 
-The system includes:
+The system provides a **single unified UI** supporting:
 
-- Secure authentication system
-- Multi-domain onboarding modules
-- Dashboard analytics for each domain
-- Profile management
-- Protected routes for security
+* Banking onboarding (fully implemented)
+* Healthcare onboarding (structure ready)
+* E-commerce onboarding (structure ready)
+* Real Estate onboarding (structure ready)
+* Multi-domain dashboards
+* Secure authentication system
 
-Currently, the **Banking domain onboarding flow is fully implemented and functional**.
+---
+
+# ⚡ Migration Update (Important)
+
+This project was originally built using **Create React App (CRA)** and has now been fully migrated to:
+
+### ✅ React + Vite architecture
+
+This improves:
+
+* ⚡ Faster startup
+* ⚡ Instant refresh
+* ⚡ Smaller bundle size
+* ⚡ Modern tooling support
+* ⚡ Better performance in production
+
+All CRA leftovers, duplicate JS files, and unsafe environment configs have been removed.
 
 ---
 
 # 🌐 Application Flow
 
-1. Landing Page  
-2. User Registration  
-3. Login Authentication  
-4. Home Page (Domain Selection)  
-5. Select Domain  
-6. Complete Domain Onboarding  
-7. Access Domain Dashboard  
+1. Landing Page
+2. User Registration
+3. Login Authentication
+4. Home Page (Domain Selection)
+5. Select Domain
+6. Complete Domain Onboarding
+7. Access Domain Dashboard
 
 ---
 
 # ✨ Core Features
 
-## 🔐 Authentication
-- User Registration
-- Secure Login
-- Forgot Password
-- Protected Routes
-- Context-based authentication state management
+## 🔐 Authentication System
+
+* User Registration
+* Secure Login
+* Forgot Password
+* Protected Routes
+* Context-based authentication state
+* Token persistence via localStorage
+
+---
 
 ## 🏠 Public Pages
-- Landing Page
-- About Page
-- Login & Register
-- Forgot Password
+
+* Landing Page
+* About Page
+* Login / Register
+* Forgot Password
+
+---
 
 ## 👤 User Features
-- Profile Page
-- Secure Session Handling
 
-## 🏦 Banking Domain (Fully Implemented)
-- Multi-step Account Opening Form
-- Personal Information Collection
-- Address Details
-- Nominee Details
-- Document Upload
-- KYC Form Submission
-- Review & Consent
-- Banking Dashboard Analytics
+* Profile Page
+* Session persistence
+* Secure route access
+* Dashboard protection
 
-## 🩺 Healthcare Domain (Structure Ready)
-- Healthcare Onboarding
-- Healthcare Dashboard
+---
 
-## 🛒 E-commerce Domain (Structure Ready)
-- E-commerce Onboarding
-- E-commerce Dashboard
+# 🏦 Banking Domain (Fully Implemented)
 
-## 🏘 Real Estate Domain (Structure Ready)
-- Real Estate Onboarding
-- Real Estate Dashboard
+### Multi-Step Account Opening Flow
 
-## 📊 Dashboard System
-- Master Dashboard
-- Domain-specific Dashboards
-- System Pages:
-  - Users
-  - Reports
-  - Settings
+* Bank selection
+* Personal information
+* Address details
+* Nominee details
+* Document upload
+* KYC submission
+* Review & consent
+* Banking analytics dashboard
+
+---
+
+# 🩺 Healthcare Domain
+
+✔ Dashboard ready
+✔ Onboarding structure ready
+
+---
+
+# 🛒 E-commerce Domain
+
+✔ Dashboard ready
+✔ Onboarding structure ready
+
+---
+
+# 🏘 Real Estate Domain
+
+✔ Dashboard ready
+✔ Onboarding structure ready
+
+---
+
+# 📊 Dashboard System
+
+* Master Dashboard
+* Domain-specific dashboards
+* System pages:
+
+  * Users
+  * Reports
+  * Settings
 
 ---
 
 # 🛠 Tech Stack
 
-## Frontend Framework
-- React.js
+### Frontend
 
-## Styling
-- Tailwind CSS
-- Custom CSS
+* React 19
+* Vite (Build Tool)
 
-## Routing
-- React Router DOM
+### Styling
 
-## State Management
-- React Context API (AuthContext)
+* Tailwind CSS v3
+* Custom CSS modules
 
-## API Integration
-- Axios
+### Routing
+
+* React Router DOM v7
+
+### State Management
+
+* React Context API (AuthContext)
+
+### API Integration
+
+* Axios instance with interceptors
 
 ---
 
-# 📂 Project Folder Structure
+# 📂 Project Structure
 
+```
 src/
 │
-├── pages/ # All main pages organized by domain
-│ ├── auth/ # Authentication & public pages
-│ ├── banking/ # Banking domain
-│ ├── healthcare/ # Healthcare domain
-│ ├── ecommerce/ # E-commerce domain
-│ ├── realestate/ # Real estate domain
-│ ├── system/ # Admin/system pages
+├── pages/                # All pages grouped by domain
+│   ├── auth/
+│   ├── banking/
+│   ├── healthcare/
+│   ├── ecommerce/
+│   ├── realestate/
+│   └── system/
 │
-├── components/ # Reusable UI components
-│ ├── Navbar
-│ ├── Sidebar
-│ ├── Layouts
-│ ├── Dashboard Shell
-│ └── UI Elements
+├── components/           # Reusable UI components
+├── services/             # API + Auth logic
+├── routes/               # ProtectedRoute
+├── hooks/                # Custom hooks
+├── animations/           # Motion configs
+├── assets/               # Images + CSS
 │
-├── services/ # API & Authentication logic
-│ ├── api.js
-│ ├── AuthContext.js
-│ └── useAuth.js
-│
-├── routes/ # ProtectedRoute logic
-├── hooks/ # Custom React hooks
-├── assets/ # Images and CSS
-├── animations/ # Animation configurations
-
-
+├── main.jsx              # Vite entry file
+├── App.jsx               # App router layout
+└── index.css             # Tailwind setup
+```
 
 ---
 
 # ⚙️ Installation & Setup
 
 ## 1️⃣ Clone Repository
-```bash
-git clone <https://github.com/manesuraj14/digital-customer-onboarding-frontend.git>
 
-2️⃣ Navigate to Project Folder
-cd MODULE-FRONTEND
+```
+git clone https://github.com/manesuraj14/digital-customer-onboarding-frontend.git
+```
 
-3️⃣ Install Dependencies
+---
+
+## 2️⃣ Open Project
+
+```
+cd digital-customer-onboarding-frontend
+```
+
+---
+
+## 3️⃣ Install Dependencies
+
+```
 node -v
 npm -v
 npm install
+```
 
-▶️ Running the Application
-npm start
-----------------------------------
-Application will run at:
+---
 
+# ▶️ Running the Application (Vite)
+
+```
+npm run dev
+```
+
+App runs at:
+
+```
 http://localhost:3000
+```
 
-----------------------------------
+*(If port is busy, Vite auto-assigns another port)*
 
-🔌 Backend Integration
+---
 
-Ensure the backend server is running before starting frontend.
+# 🔌 Backend Integration
 
------------------------------------
+Make sure backend is running before starting frontend.
 
-🔒 Security Implementation
+Frontend expects API at:
 
-Route-level protection using ProtectedRoute
+```
+http://localhost:8080/api
+```
 
-Context-based authentication handling
+You can configure this using `.env`:
 
-Session management
+```
+VITE_API_URL=http://localhost:8080/api
+VITE_API_TIMEOUT=5000
+```
 
-Controlled dashboard access
--------------------------------------------
+---
 
-📚 Academic Purpose
+# 🔒 Security Implementation
 
-This project is developed as part of a Final Year Engineering academic submission.
+* ProtectedRoute for route-level security
+* Token-based authentication
+* Context-based auth state
+* Safe Axios interceptors
+* Automatic logout on 401
 
-🚀 Future Enhancements
+---
 
-OTP-based verification
+# 📚 Academic Purpose
 
-Role-based access control
+This project is developed as a **Final Year Engineering academic submission** demonstrating:
 
-Cloud deployment
+* Multi-domain system architecture
+* Frontend engineering best practices
+* Secure authentication flows
+* Scalable UI design
+* Modular routing structure
 
-Document verification integration
+---
 
-Admin analytics panel
+# 🚀 Future Enhancements
 
-Multi-language support
+* OTP verification
+* Role-based access control
+* Cloud deployment
+* Document verification integration
+* Admin analytics panel
+* Multi-language support
+
+---
+
+# 👨‍💻 Maintainers
+
+**Suraj Mane**
+Frontend Lead – Digital Customer Onboarding
+
+---
+
+# ⭐ If you found this project useful
+
+Give it a star on GitHub 🙂
