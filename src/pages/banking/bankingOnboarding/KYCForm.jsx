@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+// import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Shield,
   Upload,
@@ -14,16 +15,32 @@ import Card from "../../../components/ui/Card";
 import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
 
+
+
 export default function KYCForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [formData, setFormData] = useState({
+    applicationId: "",
     pan: "",
     aadhaar: "",
     consent: false,
   });
+  const [panFile, setPanFile] = useState(null);
+  const [aadhaarFile, setAadhaarFile] = useState(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+  const savedId = localStorage.getItem("applicationId");
+
+  if (savedId && formData.applicationId !== savedId) {
+    setFormData(prev => ({
+      ...prev,
+      applicationId: savedId
+    }));
+  }
+}, [formData.applicationId]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -33,16 +50,98 @@ export default function KYCForm() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const handlePanFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPanFile(file);
+    }
+  };
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+  const handleAadhaarFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAadhaarFile(file);
+    }
+  };
+
+  const validateForm = () => {
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    const aadhaarRegex = /^[0-9]{12}$/;
+
+    if (!formData.applicationId) {
+  setError("Application ID is required.");
+  return false;
+}
+
+    if (!panRegex.test(formData.pan)) {
+      setError("Invalid PAN format. Expected format: ABCDE1234F");
+      return false;
+    }
+
+    if (!aadhaarRegex.test(formData.aadhaar)) {
+      setError("Invalid Aadhaar format. Must be 12 digits.");
+      return false;
+    }
+
+    if (!panFile) {
+      setError("Please upload PAN document.");
+      return false;
+    }
+
+    if (!aadhaarFile) {
+      setError("Please upload Aadhaar document.");
+      return false;
+    }
+
+    setError("");
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!validateForm()) {
+    return;
+  }
+
+  setLoading(true);
+  setError("");
+
+  try {
+
+    const applicationId = formData.applicationId;
+
+    const formDataToSend = new FormData();
+
+    formDataToSend.append("applicationId", applicationId);
+    formDataToSend.append("pan", formData.pan);
+    formDataToSend.append("aadhaar", formData.aadhaar);
+    formDataToSend.append("panFile", panFile);
+    formDataToSend.append("aadhaarFile", aadhaarFile);
+
+    await axios.post(
+      "http://localhost:8081/api/banking/kyc/verify",
+      formDataToSend,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    localStorage.setItem("applicationId", applicationId);
 
     setLoading(false);
     setSubmitted(true);
-  };
+
+  } catch (err) {
+    setLoading(false);
+    setError(
+      err.response?.data?.message ||
+      "KYC verification failed. Please try again."
+    );
+  }
+};
 
   if (submitted) {
     return (
@@ -59,7 +158,9 @@ export default function KYCForm() {
             KYC Verification Submitted!
           </h2>
           <p className="text-gray-600 mb-8 max-w-md mx-auto">
-            Your KYC documents have been submitted successfully. Verification typically takes 24-48 hours. You'll receive updates via email and SMS.
+            Your KYC documents have been submitted successfully. Verification
+            typically takes 24-48 hours. You'll receive updates via email and
+            SMS.
           </p>
 
           <div className="bg-gray-50 rounded-xl p-6 mb-8 inline-block">
@@ -73,10 +174,19 @@ export default function KYCForm() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={() => window.location.href = "/dashboard/banking/track"}>
+            <Button
+              onClick={() =>
+                (window.location.href = "/dashboard/banking/track")
+              }
+            >
               Track Status
             </Button>
-            <Button variant="outline" onClick={() => window.location.href = "/dashboard/banking"}>
+            <Button
+              variant="outline"
+              onClick={() =>
+                (window.location.href = "/dashboard/banking")
+              }
+            >
               Back to Banking
             </Button>
           </div>
@@ -97,6 +207,10 @@ export default function KYCForm() {
           { label: "KYC Verification" },
         ]}
       />
+
+      {/* Everything below remains EXACTLY the same */}
+
+
 
       {/* Progress Steps */}
       <Card className="mb-8">
@@ -159,6 +273,16 @@ export default function KYCForm() {
 
               <div className="space-y-5">
                 <Input
+                  label="Application ID"
+                  name="applicationId"
+                  value={formData.applicationId}
+                  onChange={handleChange}
+                  placeholder="Enter your application ID (e.g., APP-9ed77801)"
+                  required
+                />
+
+
+                <Input
                   label="PAN Number"
                   name="pan"
                   value={formData.pan}
@@ -195,7 +319,7 @@ export default function KYCForm() {
               <div className="flex justify-end mt-8">
                 <Button
                   type="button"
-                  disabled={!formData.pan || !formData.aadhaar}
+                  disabled={!formData.applicationId || !formData.pan || !formData.aadhaar}
                   onClick={() => setStep(2)}
                   icon={ArrowRight}
                   iconPosition="right"
@@ -225,27 +349,35 @@ export default function KYCForm() {
               <div className="space-y-5">
                 {/* PAN Upload */}
                 <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 hover:border-primary transition-colors cursor-pointer">
-                  <input type="file" accept=".jpg,.png,.pdf" className="hidden" id="pan-doc" />
+                  <input type="file" accept=".jpg,.png,.pdf" className="hidden" id="pan-doc" onChange={handlePanFileChange} />
                   <label htmlFor="pan-doc" className="cursor-pointer">
                     <div className="text-center">
                       <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" />
                       <p className="font-medium text-gray-900 mb-1">Upload PAN Card</p>
                       <p className="text-sm text-gray-500">JPG, PNG or PDF (max 5MB)</p>
+                      {panFile && <p className="text-sm text-success mt-2">File selected: {panFile.name}</p>}
                     </div>
                   </label>
                 </div>
 
                 {/* Aadhaar Upload */}
                 <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 hover:border-primary transition-colors cursor-pointer">
-                  <input type="file" accept=".jpg,.png,.pdf" className="hidden" id="aadhaar-doc" />
+                  <input type="file" accept=".jpg,.png,.pdf" className="hidden" id="aadhaar-doc" onChange={handleAadhaarFileChange} />
                   <label htmlFor="aadhaar-doc" className="cursor-pointer">
                     <div className="text-center">
                       <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" />
                       <p className="font-medium text-gray-900 mb-1">Upload Aadhaar Card</p>
                       <p className="text-sm text-gray-500">JPG, PNG or PDF (max 5MB)</p>
+                      {aadhaarFile && <p className="text-sm text-success mt-2">File selected: {aadhaarFile.name}</p>}
                     </div>
                   </label>
                 </div>
+
+                {error && (
+                  <div className="bg-error/10 border border-error/20 rounded-xl p-4">
+                    <p className="text-sm text-error">{error}</p>
+                  </div>
+                )}
               </div>
 
               <div className="flex justify-between mt-8">

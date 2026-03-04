@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
   Building2,
@@ -95,12 +95,16 @@ export default function AccountOpening() {
         }
       );
 
+      
+
       if (!response.ok) {
         throw new Error("Application submission failed");
       }
 
       const result = await response.json();
-      localStorage.setItem("lastApplicationId", result.applicationId);
+      localStorage.setItem("applicationId", result.applicationId);
+localStorage.setItem("lastApplicationId", result.applicationId);
+      navigate("/dashboard/banking/kyc");
       setSubmitted(true);
     } catch (error) {
       console.error(error);
@@ -132,7 +136,7 @@ export default function AccountOpening() {
           <div className="bg-gray-50 rounded-xl p-6 mb-8 inline-block">
             <p className="text-sm text-gray-500 mb-1">Application ID</p>
             <p className="text-2xl font-bold text-primary">
-              {localStorage.getItem("lastApplicationId") || "APP-" + Date.now()}
+              {localStorage.getItem("applicationId") || "APP-" + Date.now()}
             </p>
           </div>
 
